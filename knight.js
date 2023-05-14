@@ -5,7 +5,7 @@ export default class Knight {
         this.start = start;
         this.x = x;
         this.y = y;
-        this.board = new Board(x, y)
+        this.board = new Board(x, y);
     }
 
     getMoves(pos = this.start) {
@@ -64,7 +64,7 @@ export default class Knight {
         path.reverse();
 
         // set positions in the board
-        this.board.setValues(path)
+        this.board.setValues(path);
         return path;
     }
 }
