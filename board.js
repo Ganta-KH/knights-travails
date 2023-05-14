@@ -1,6 +1,6 @@
 export default class Board {
     constructor(x = 8, y = 8) {
-        this.board = this.matrix(x, y);
+        this.board = this.#matrix(x, y);
     }
 
     setValues(values) {
@@ -13,7 +13,7 @@ export default class Board {
         }
     }
 
-    matrix(x, y) {
+    #matrix(x, y) {
         const mat = [];
         for (let i = 0; i < x; i++) {
             const row = [];
