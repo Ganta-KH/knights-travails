@@ -5,11 +5,10 @@ export default class Board {
 
     setValues(values) {
         const start = values[0];
-        this.board[start[0]][start[1]] = "S";
+        this.board[start[0]][start[1]] = "𝐒";
 
         for (let i = 1; i < values.length; i++) {
             const val = values[i];
-            console.log(val);
             this.board[val[0]][val[1]] = i;
         }
     }
