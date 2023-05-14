@@ -1,10 +1,10 @@
 export default class Knight {
     constructor(start) {
         this.start = start;
-        this.moves = this.getMoves();
     }
 
-    getMoves(arr = [], pos = this.start) {
+    getMoves(pos = this.start) {
+        const arr = [];
         // top top
         if (pos[0] - 2 > -1) {
             if (pos[1] - 1 >= 0) arr.push([pos[0] - 2, pos[1] - 1]);
@@ -27,7 +27,41 @@ export default class Knight {
         }
         return arr;
     }
+
+    knightMoves(end, start = this.start) {
+        const queue = [start];
+        const visited = new Set([start.toString()]);
+        const road = {};
+
+        while (queue.length !== 0) {
+            start = queue.shift();
+            if (end.toString() === start.toString())
+                return this.path(this.start, end, road);
+            const moves = this.getMoves(start);
+            for (let move of moves) {
+                if (!visited.has(move.toString())) {
+                    queue.push(move);
+                    visited.add(move.toString());
+                    road[move] = start;
+                }
+            }
+        }
+        return this.path(this.start, end, road);
+    }
+
+    path(start, end, nodes) {
+        const path = [];
+        console.log(nodes);
+        path.push(end);
+        while (end.toString() !== start.toString()) {
+            end = nodes[end.toString()];
+            path.push(end);
+        }
+        path.reverse();
+        return path;
+    }
 }
 
 const knight = new Knight([0, 0]);
-console.log(knight.moves);
+
+console.log(knight.bfs([1, 7]));
