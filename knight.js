@@ -40,8 +40,7 @@ export default class Knight {
 
         while (queue.length !== 0) {
             start = queue.shift();
-            if (end.toString() === start.toString())
-                return this.path(this.start, end, road);
+            if (end.toString() === start.toString()) return this.#path(this.start, end, road);
             const moves = this.getMoves(start);
             for (const move of moves) {
                 if (!visited.has(move.toString())) {
@@ -51,10 +50,10 @@ export default class Knight {
                 }
             }
         }
-        return this.path(this.start, end, road);
+        return this.#path(this.start, end, road);
     }
 
-    path(start, end, nodes) {
+    #path(start, end, nodes) {
         const path = [];
         path.push(end);
         while (end.toString() !== start.toString()) {
